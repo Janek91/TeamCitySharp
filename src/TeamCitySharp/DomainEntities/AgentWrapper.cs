@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class AgentWrapper
-    {
-        public List<Agent> Agent { get; set; }
-    }
+  public class AgentWrapper
+  {
+    [JsonFx.Json.JsonName("agent")]
+    public List<Agent> Agent { get; set; }
+  }
 }

@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class UserWrapper
-    {
-        public List<User> User { get; set; }
-    }
+  public class UserWrapper
+  {
+    [JsonFx.Json.JsonName("user")]
+    public List<User> User { get; set; }
+  }
 }

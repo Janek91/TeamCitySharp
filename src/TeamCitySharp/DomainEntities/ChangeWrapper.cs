@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class ChangeWrapper
-    {
-        public List<Change> Change { get; set; }
-    }
+  public class ChangeWrapper
+  {
+    [JsonFx.Json.JsonName("change")]
+    public List<Change> Change { get; set; }
+  }
 }

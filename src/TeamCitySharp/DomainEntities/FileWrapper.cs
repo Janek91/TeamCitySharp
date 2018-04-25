@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class FileWrapper
-    {
-        public List<File> File { get; set; }
-    }
+  public class FileWrapper
+  {
+    [JsonFx.Json.JsonName("file")]
+    public List<File> File { get; set; }
+  }
 }

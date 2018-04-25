@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class BuildTypeWrapper
-    {
-        public List<BuildConfig> BuildType { get; set; }
-    }
+  public class BuildTypeWrapper
+  {
+    [JsonFx.Json.JsonName("buildType")]
+    public List<BuildConfig> BuildType { get; set; }
+  }
 }

@@ -2,23 +2,44 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class User
+  public class User
+  {
+    [JsonFx.Json.JsonName("username")]
+    public string Username { get; set; }
+
+    [JsonFx.Json.JsonName("name")]
+    public string Name { get; set; }
+
+    [JsonFx.Json.JsonName("id")]
+    public string Id { get; set; }
+
+    [JsonFx.Json.JsonName("href")]
+    public string Href { get; set; }
+
+    [JsonFx.Json.JsonName("user")]
+    public string Email { get; set; }
+
+    [JsonFx.Json.JsonName("realm")]
+    public string Realm { get; set; }
+
+    [JsonFx.Json.JsonName("lastLogin")]
+    public DateTime LastLogin { get; set; }
+
+    [JsonFx.Json.JsonName("properties")]
+
+    public Properties Properties { get; set; }
+
+    [JsonFx.Json.JsonName("roles")]
+    public RoleWrapper Roles { get; set; }
+
+    [JsonFx.Json.JsonName("groups")]
+    public UserGroupWrapper Groups { get; set; }
+
+
+
+    public override string ToString()
     {
-        public string Username { get; set; }
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public string Href { get; set; }
-        public string Email { get; set; }
-        public string Realm { get; set; }
-        public DateTime LastLogin { get; set; }
-
-        public Properties Properties { get; set; }
-        public RoleWrapper Roles { get; set; }
-        public UserGroupWrapper Groups { get; set; } 
-
-        public override string ToString()
-        {
-            return Username;
-        }
+      return Username;
     }
+  }
 }

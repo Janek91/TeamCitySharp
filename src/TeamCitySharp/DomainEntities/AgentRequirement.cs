@@ -1,14 +1,17 @@
 ﻿namespace TeamCitySharp.DomainEntities
 {
-    public class AgentRequirement
+  public class AgentRequirement
+  {
+    public override string ToString()
     {
-        public override string ToString()
-        {
-            return "agent_requirement";
-        }
-
-        public string Id { get; set; }
-        public string Type { get; set; }
-        public Properties Properties { get; set; }
+      return "agent_requirement";
     }
+
+    [JsonFx.Json.JsonName("id")]
+    public string Id { get; set; }
+    [JsonFx.Json.JsonName("type")]
+    public string Type { get; set; }
+    [JsonFx.Json.JsonName("properties")]
+    public Properties Properties { get; set; }
+  }
 }

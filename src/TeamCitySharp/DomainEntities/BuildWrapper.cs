@@ -2,9 +2,12 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class BuildWrapper
-    {
-        public string Count { get; set; }
-        public List<Build> Build { get; set; }
-    }
+  public class BuildWrapper
+  {
+    [JsonFx.Json.JsonName("count")]
+    public string Count { get; set; }
+
+    [JsonFx.Json.JsonName("build")]
+    public List<Build> Build { get; set; }
+  }
 }

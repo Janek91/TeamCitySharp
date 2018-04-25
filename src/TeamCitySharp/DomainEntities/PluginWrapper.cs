@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class PluginWrapper
-    {
-        public List<Plugin> Plugin { get; set; }
-    }
+  public class PluginWrapper
+  {
+    [JsonFx.Json.JsonName("plugin")]
+    public List<Plugin> Plugin { get; set; }
+  }
 }

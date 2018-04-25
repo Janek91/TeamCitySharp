@@ -2,8 +2,9 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class VcsRootWrapper
-    {
-        public List<VcsRoot> VcsRoot { get; set; }
-    }
+  public class VcsRootWrapper
+  {
+    [JsonFx.Json.JsonName("vcs-root")]
+    public List<VcsRoot> VcsRoot { get; set; }
+  }
 }
