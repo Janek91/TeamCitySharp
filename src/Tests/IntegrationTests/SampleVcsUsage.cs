@@ -44,7 +44,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_exception_when_host_does_not_exist()
     {
-      var client = new TeamCityClient("test:81");
+      TeamCityClient client = new TeamCityClient("test:81");
       client.Connect("admin", "qwerty");
 
       Assert.Throws<WebException>(() => client.VcsRoots.All());
@@ -53,7 +53,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_exception_when_no_connection_formed()
     {
-      var client = new TeamCityClient(m_server, m_useSsl);
+      TeamCityClient client = new TeamCityClient(m_server, m_useSsl);
       Assert.Throws<ArgumentException>(() => client.VcsRoots.All());
     }
 
@@ -77,12 +77,12 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_correct_next_builds_with_filter()
     {
       
-      var client = new TeamCityClient(m_server, m_useSsl);
+      TeamCityClient client = new TeamCityClient(m_server, m_useSsl);
       client.ConnectAsGuest();
 
       VcsRootField vcsRootField = VcsRootField.WithFields(id: true, href: true, lastChecked: true, name:true, status:true, vcsName: true, version:true );
       VcsRootsField vcsRootsField = VcsRootsField.WithFields(vcsRootField);
-      var vcsRoots = client.VcsRoots.GetFields(vcsRootsField.ToString()).All();
+      List<VcsRoot> vcsRoots = client.VcsRoots.GetFields(vcsRootsField.ToString()).All();
 
       Assert.That(vcsRoots != null);
     }
@@ -90,7 +90,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_create_new_vsc()
     {
-      var project = m_client.Projects.ById(m_goodProjectId);
+      Project project = m_client.Projects.ById(m_goodProjectId);
 
       VcsRoot vcsroot = new VcsRoot();
       vcsroot.Id = project.Id + "_vcsroot1_01";
@@ -104,7 +104,7 @@ namespace TeamCitySharp.IntegrationTests
       properties.Add("agentCleanFilesPolicy", "IGNORED_ONLY");
       vcsroot.Properties = properties;
 
-      var vcsroot2 = m_client.VcsRoots.CreateVcsRoot(vcsroot, project.Id);
+      VcsRoot vcsroot2 = m_client.VcsRoots.CreateVcsRoot(vcsroot, project.Id);
      
       m_client.VcsRoots.SetVcsRootValue(vcsroot2, VcsRootValue.Name, "TestChangeName");
 

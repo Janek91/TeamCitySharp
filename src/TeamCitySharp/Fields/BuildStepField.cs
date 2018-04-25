@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamCitySharp.Fields
+﻿namespace TeamCitySharp.Fields
 {
   public class BuildStepField : IField
   {
@@ -43,7 +41,7 @@ namespace TeamCitySharp.Fields
 
     public override string ToString()
     {
-      var currentFields = String.Empty;
+      string currentFields = string.Empty;
 
       FieldHelper.AddField(Id, ref currentFields, "id");
       FieldHelper.AddField(Name, ref currentFields, "name");

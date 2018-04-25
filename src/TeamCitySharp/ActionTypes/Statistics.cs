@@ -16,7 +16,7 @@ namespace TeamCitySharp.ActionTypes
 
     public Statistics GetFields(string fields)
     {
-      var newInstance = (Statistics) MemberwiseClone();
+      Statistics newInstance = (Statistics) MemberwiseClone();
       newInstance.m_fields = fields;
       return newInstance;
     }

@@ -41,7 +41,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_throws_exception_when_host_url_invalid()
     {
-      var client = new TeamCityClient("teamcity:81");
+      TeamCityClient client = new TeamCityClient("teamcity:81");
       client.Connect("teamcitysharpuser", "qwerty");
 
       Assert.Throws<WebException>(() => client.Agents.All());
@@ -50,7 +50,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_throws_exception_when_no_client_connection_made()
     {
-      var client = new TeamCityClient(m_server, m_useSsl);
+      TeamCityClient client = new TeamCityClient(m_server, m_useSsl);
 
       Assert.Throws<ArgumentException>(() => client.Agents.All());
     }

@@ -34,7 +34,7 @@ namespace TeamCitySharp.DomainEntities
 
     public static SnapshotDependency Default(string dependsOnbuildId)
     {
-      var dependency = new SnapshotDependency();
+      SnapshotDependency dependency = new SnapshotDependency();
 
       dependency.Properties.Add("run-build-if-dependency-failed", "false");
       dependency.Properties.Add("run-build-on-the-same-agent", "false");

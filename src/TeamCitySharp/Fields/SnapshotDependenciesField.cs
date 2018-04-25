@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamCitySharp.Fields
+﻿namespace TeamCitySharp.Fields
 {
   public class SnapshotDependenciesField : IField
   {
@@ -34,7 +32,7 @@ namespace TeamCitySharp.Fields
 
     public override string ToString()
     {
-      var currentFields = String.Empty;
+      string currentFields = string.Empty;
 
       FieldHelper.AddField(Count, ref currentFields, "count");
 

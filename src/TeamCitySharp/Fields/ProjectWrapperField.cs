@@ -1,5 +1,3 @@
-using System;
-
 namespace TeamCitySharp.Fields
 {
   public class ProjectWrapperField : IField
@@ -34,7 +32,7 @@ namespace TeamCitySharp.Fields
 
     public override string ToString()
     {
-      var currentFields = String.Empty;
+      string currentFields = string.Empty;
 
       FieldHelper.AddField(Count, ref currentFields, "count");
       FieldHelper.AddFieldGroup(Project, ref currentFields);

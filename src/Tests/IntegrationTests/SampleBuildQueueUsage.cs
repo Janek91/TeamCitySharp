@@ -5,8 +5,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Configuration;
 using NUnit.Framework;
+using TeamCitySharp.DomainEntities;
 using TeamCitySharp.Locators;
 
 namespace TeamCitySharp.IntegrationTests
@@ -43,7 +45,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_the_builds_queued_by_build_config_id()
     {
-      var result = m_client.BuildQueue.ByBuildTypeLocator(BuildTypeLocator.WithId(m_goodBuildConfigId));
+      List<Build> result = m_client.BuildQueue.ByBuildTypeLocator(BuildTypeLocator.WithId(m_goodBuildConfigId));
 
       Assert.IsNotEmpty(result);
     }
@@ -51,7 +53,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_the_builds_queued_by_project_id()
     {
-      var result = m_client.BuildQueue.ByProjectLocater(ProjectLocator.WithId(m_goodProjectId));
+      List<Build> result = m_client.BuildQueue.ByProjectLocater(ProjectLocator.WithId(m_goodProjectId));
 
       Assert.IsNotEmpty(result);
     }

@@ -8,19 +8,19 @@ namespace TeamCitySharp.ActionTypes
   public interface IBuilds
   {
     Builds GetFields(string fields);
-    List<Build> SuccessfulBuildsByBuildConfigId(string buildConfigId, List<String> param = null);
-    Build LastSuccessfulBuildByBuildConfigId(string buildConfigId, List<String> param = null);
-    List<Build> FailedBuildsByBuildConfigId(string buildConfigId, List<String> param = null);
-    Build LastFailedBuildByBuildConfigId(string buildConfigId, List<String> param = null);
-    Build LastBuildByBuildConfigId(string buildConfigId, List<String> param = null);
-    List<Build> ErrorBuildsByBuildConfigId(string buildConfigId, List<String> param = null);
-    Build LastErrorBuildByBuildConfigId(string buildConfigId, List<String> param = null);
-    Build LastBuildByAgent(string agentName, List<String> param = null);
+    List<Build> SuccessfulBuildsByBuildConfigId(string buildConfigId, List<string> param = null);
+    Build LastSuccessfulBuildByBuildConfigId(string buildConfigId, List<string> param = null);
+    List<Build> FailedBuildsByBuildConfigId(string buildConfigId, List<string> param = null);
+    Build LastFailedBuildByBuildConfigId(string buildConfigId, List<string> param = null);
+    Build LastBuildByBuildConfigId(string buildConfigId, List<string> param = null);
+    List<Build> ErrorBuildsByBuildConfigId(string buildConfigId, List<string> param = null);
+    Build LastErrorBuildByBuildConfigId(string buildConfigId, List<string> param = null);
+    Build LastBuildByAgent(string agentName, List<string> param = null);
     Build ById(string id);
     List<Build> ByBuildConfigId(string buildConfigId);
     List<Build> RunningByBuildConfigId(string buildConfigId);
-    List<Build> ByBuildConfigId(string buildConfigId, List<String> param);
-    List<Build> ByBuildLocator(BuildLocator locator, List<String> param);
+    List<Build> ByBuildConfigId(string buildConfigId, List<string> param);
+    List<Build> ByBuildLocator(BuildLocator locator, List<string> param);
     List<Build> ByConfigIdAndTag(string buildConfigId, string tag);
     List<Build> ByUserName(string userName);
     List<Build> ByBuildLocator(BuildLocator locator);

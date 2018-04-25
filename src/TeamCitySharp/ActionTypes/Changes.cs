@@ -18,28 +18,28 @@ namespace TeamCitySharp.ActionTypes
 
         public Changes GetFields(string fields)
         {
-            var newInstance = (Changes)MemberwiseClone();
+            Changes newInstance = (Changes)MemberwiseClone();
             newInstance.m_fields = fields;
             return newInstance;
         }
 
         public List<Change> All()
         {
-            var changeWrapper = m_caller.Get<ChangeWrapper>(ActionHelper.CreateFieldUrl("/app/rest/changes", m_fields));
+            ChangeWrapper changeWrapper = m_caller.Get<ChangeWrapper>(ActionHelper.CreateFieldUrl("/app/rest/changes", m_fields));
 
             return changeWrapper.Change;
         }
 
         public Change ByChangeId(string id)
         {
-            var change = m_caller.GetFormat<Change>(ActionHelper.CreateFieldUrl("/app/rest/changes/id:{0}", m_fields), id);
+            Change change = m_caller.GetFormat<Change>(ActionHelper.CreateFieldUrl("/app/rest/changes/id:{0}", m_fields), id);
 
             return change;
         }
 
         public List<Change> ByBuildConfigId(string buildConfigId)
         {
-            var changeWrapper =
+            ChangeWrapper changeWrapper =
               m_caller.GetFormat<ChangeWrapper>(ActionHelper.CreateFieldUrl("/app/rest/changes?buildType={0}", m_fields),
                                                buildConfigId);
 
@@ -48,14 +48,14 @@ namespace TeamCitySharp.ActionTypes
 
         public Change LastChangeDetailByBuildConfigId(string buildConfigId)
         {
-            var changes = ByBuildConfigId(buildConfigId);
+            List<Change> changes = ByBuildConfigId(buildConfigId);
 
             return changes.FirstOrDefault();
         }
 
         public List<Change> ByLocator(ChangeLocator locator)
         {
-            var changeWrapper = m_caller.GetFormat<ChangeWrapper>("/app/rest/changes?locator={0}", locator);
+            ChangeWrapper changeWrapper = m_caller.GetFormat<ChangeWrapper>("/app/rest/changes?locator={0}", locator);
             if (changeWrapper.Change.Count > 0)
             {
                 return changeWrapper.Change;

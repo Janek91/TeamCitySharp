@@ -15,7 +15,7 @@ namespace TeamCitySharp.ActionTypes
 
         public List<TestOccurrence> ByBuildId(string buildId, int count)
         {
-            var testOccurenceWrapper = _caller.GetFormat<TestOccurrenceWrapper>("/app/rest/testOccurrences?locator=build:{0},count:{1}", buildId, count);
+            TestOccurrenceWrapper testOccurenceWrapper = _caller.GetFormat<TestOccurrenceWrapper>("/app/rest/testOccurrences?locator=build:{0},count:{1}", buildId, count);
 
             return testOccurenceWrapper.TestOccurrence;
         }

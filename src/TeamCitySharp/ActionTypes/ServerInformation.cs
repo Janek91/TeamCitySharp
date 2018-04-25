@@ -17,21 +17,21 @@
 
     public Server ServerInfo()
     {
-      var server = m_caller.Get<Server>(ServerUrlPrefix);
+      Server server = m_caller.Get<Server>(ServerUrlPrefix);
       return server;
     }
 
     public List<Plugin> AllPlugins()
     {
-      var pluginWrapper = m_caller.Get<PluginWrapper>(ServerUrlPrefix + "/plugins");
+      PluginWrapper pluginWrapper = m_caller.Get<PluginWrapper>(ServerUrlPrefix + "/plugins");
 
       return pluginWrapper.Plugin;
     }
 
     public string TriggerServerInstanceBackup(BackupOptions backupOptions)
     {
-      var backupOptionsUrlPart = BuildBackupOptionsUrl(backupOptions);
-      var url = string.Concat(ServerUrlPrefix, "/backup?", backupOptionsUrlPart);
+      string backupOptionsUrlPart = BuildBackupOptionsUrl(backupOptions);
+      string url = string.Concat(ServerUrlPrefix, "/backup?", backupOptionsUrlPart);
 
       return m_caller.StartBackup(url);
     }

@@ -45,7 +45,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_exception_when_host_does_not_exist()
     {
-      var client = new TeamCityClient("test:81");
+      TeamCityClient client = new TeamCityClient("test:81");
       client.Connect("admin", "qwerty");
 
       Assert.Throws<WebException>(() => client.Changes.All());
@@ -55,7 +55,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_exception_when_no_connection_made()
     {
-      var client = new TeamCityClient(m_server, m_useSsl);
+      TeamCityClient client = new TeamCityClient(m_server, m_useSsl);
 
       Assert.Throws<ArgumentException>(() => client.Changes.All());
     }

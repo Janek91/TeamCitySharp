@@ -31,7 +31,7 @@ namespace TeamCitySharp.DomainEntities
 
     public static BuildTrigger FinishBuildTrigger(string dependsOnbuildId)
     {
-      var trigger = new BuildTrigger
+      BuildTrigger trigger = new BuildTrigger
         {
           Type = "buildDependencyTrigger"
         };

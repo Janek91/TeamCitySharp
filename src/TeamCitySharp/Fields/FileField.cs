@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamCitySharp.Fields
+﻿namespace TeamCitySharp.Fields
 {
   public class FileField : IField
   {
@@ -33,7 +31,7 @@ namespace TeamCitySharp.Fields
 
     public override string ToString()
     {
-      var currentFields = String.Empty;
+      string currentFields = string.Empty;
 
       FieldHelper.AddField(BeforeRevision, ref currentFields, "before-revision");
       FieldHelper.AddField(AfterRevision, ref currentFields, "after-revision");

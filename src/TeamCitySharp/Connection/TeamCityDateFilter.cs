@@ -14,7 +14,7 @@ namespace TeamCitySharp.Connection
 
     public override bool TryRead(DataReaderSettings settings, IStream<Token<ModelTokenType>> tokens, out DateTime value)
     {
-      var token = tokens.Peek();
+      Token<ModelTokenType> token = tokens.Peek();
       if (token == null || token.TokenType != ModelTokenType.Primitive || !(token.Value is string))
       {
         value = default(DateTime);

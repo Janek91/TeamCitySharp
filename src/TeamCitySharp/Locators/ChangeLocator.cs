@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TeamCitySharp.Locators
 {
@@ -9,12 +6,12 @@ namespace TeamCitySharp.Locators
     {
         public static ChangeLocator WithId(string id)
         {
-            return new ChangeLocator() {Id = id};
+            return new ChangeLocator() { Id = id };
         }
 
         public static ChangeLocator WithBuildId(long id)
         {
-            return new ChangeLocator {Build = BuildLocator.WithId(id)};
+            return new ChangeLocator { Build = BuildLocator.WithId(id) };
         }
 
         public static ChangeLocator WithDimensions(string id,
@@ -77,7 +74,7 @@ namespace TeamCitySharp.Locators
                 return "id:" + Id;
             }
 
-            var locatorFields = new List<string>();
+            List<string> locatorFields = new List<string>();
 
             if (BuildType != null)
             {
@@ -99,42 +96,42 @@ namespace TeamCitySharp.Locators
                 locatorFields.Add("sinceChange:(" + SinceChange + ")");
             }
 
-            if (!String.IsNullOrEmpty(Project))
+            if (!string.IsNullOrEmpty(Project))
             {
                 locatorFields.Add("project:" + Project);
             }
 
-            if (!String.IsNullOrEmpty(VcsRoot))
+            if (!string.IsNullOrEmpty(VcsRoot))
             {
                 locatorFields.Add("vcsRoot:" + VcsRoot);
             }
 
-            if (!String.IsNullOrEmpty(VcsRootInstance))
+            if (!string.IsNullOrEmpty(VcsRootInstance))
             {
                 locatorFields.Add("vcsRootInstance:" + VcsRootInstance);
             }
 
-            if (!String.IsNullOrEmpty(UserName))
+            if (!string.IsNullOrEmpty(UserName))
             {
                 locatorFields.Add("userName:" + UserName);
             }
 
-            if (!String.IsNullOrEmpty(Version))
+            if (!string.IsNullOrEmpty(Version))
             {
                 locatorFields.Add("version:" + Version);
             }
 
-            if (!String.IsNullOrEmpty(InternalVersion))
+            if (!string.IsNullOrEmpty(InternalVersion))
             {
                 locatorFields.Add("internalVersion:" + InternalVersion);
             }
 
-            if (!String.IsNullOrEmpty(Comment))
+            if (!string.IsNullOrEmpty(Comment))
             {
                 locatorFields.Add("comment:" + Comment);
             }
 
-            if (!String.IsNullOrEmpty(File))
+            if (!string.IsNullOrEmpty(File))
             {
                 locatorFields.Add("file:" + File);
             }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamCitySharp.Fields
+﻿namespace TeamCitySharp.Fields
 {
   public class ParentProjectField : IField
   {
@@ -46,7 +44,7 @@ namespace TeamCitySharp.Fields
 
     public override string ToString()
     {
-      var currentFields = String.Empty;
+      string currentFields = string.Empty;
 
       FieldHelper.AddField(Archived, ref currentFields, "archived");
       FieldHelper.AddField(Description, ref currentFields, "description");

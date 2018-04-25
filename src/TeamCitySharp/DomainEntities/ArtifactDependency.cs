@@ -34,7 +34,7 @@ namespace TeamCitySharp.DomainEntities
 
     public static ArtifactDependency Default(string dependsOnbuildId)
     {
-      var dependency = new ArtifactDependency();
+      ArtifactDependency dependency = new ArtifactDependency();
 
       dependency.Properties.Add("cleanDestinationDirectory", "true");
       dependency.Properties.Add("pathRules", "* => Temp");

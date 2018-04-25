@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
 using NUnit.Framework;
+using TeamCitySharp.DomainEntities;
 using TeamCitySharp.Locators;
 
 namespace TeamCitySharp.IntegrationTests
@@ -45,7 +47,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_throws_exception_when_host_does_not_exist()
     {
-      var client = new TeamCityClient("test:81");
+      TeamCityClient client = new TeamCityClient("test:81");
       client.Connect("teamcitysharpuser", "qwerty");
 
       Assert.Throws<WebException>(() => client.BuildConfigs.All());
@@ -54,7 +56,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_throws_exception_when_no_connection_formed()
     {
-      var client = new TeamCityClient(m_server,m_useSsl);
+      TeamCityClient client = new TeamCityClient(m_server,m_useSsl);
 
       Assert.Throws<ArgumentException>(() => client.BuildConfigs.All());
 
@@ -64,7 +66,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_all_build_types()
     {
-      var buildConfigs = m_client.BuildConfigs.All();
+      List<BuildConfig> buildConfigs = m_client.BuildConfigs.All();
 
       Assert.That(buildConfigs.Any(), "No build types were found in this server");
     }
@@ -73,7 +75,7 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_build_config_details_by_configuration_id()
     {
       string buildConfigId = m_goodBuildConfigId;
-      var buildConfig = m_client.BuildConfigs.ByConfigurationId(buildConfigId);
+      BuildConfig buildConfig = m_client.BuildConfigs.ByConfigurationId(buildConfigId);
 
       Assert.That(buildConfig != null, "Cannot find a build type for that buildId");
     }
@@ -82,9 +84,9 @@ namespace TeamCitySharp.IntegrationTests
     public void it_pauses_configuration()
     {
       string buildConfigId = m_goodBuildConfigId;
-      var buildLocator = BuildTypeLocator.WithId(buildConfigId);
+      BuildTypeLocator buildLocator = BuildTypeLocator.WithId(buildConfigId);
       m_client.BuildConfigs.SetConfigurationPauseStatus(buildLocator, true);
-      var status = m_client.BuildConfigs.GetConfigurationPauseStatus(buildLocator);
+      bool status = m_client.BuildConfigs.GetConfigurationPauseStatus(buildLocator);
       Assert.That(status == true, "Build not paused");
     }
 
@@ -92,9 +94,9 @@ namespace TeamCitySharp.IntegrationTests
     public void it_unpauses_configuration()
     {
       string buildConfigId = m_goodBuildConfigId;
-      var buildLocator = BuildTypeLocator.WithId(buildConfigId);
+      BuildTypeLocator buildLocator = BuildTypeLocator.WithId(buildConfigId);
       m_client.BuildConfigs.SetConfigurationPauseStatus(buildLocator, false);
-      var status = m_client.BuildConfigs.GetConfigurationPauseStatus(buildLocator);
+      bool status = m_client.BuildConfigs.GetConfigurationPauseStatus(buildLocator);
       Assert.That(status == false, "Build not unpaused");
     }
 
@@ -102,7 +104,7 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_build_config_details_by_configuration_name()
     {
       string buildConfigName = "Release Build";
-      var buildConfig = m_client.BuildConfigs.ByConfigurationName(buildConfigName);
+      BuildConfig buildConfig = m_client.BuildConfigs.ByConfigurationName(buildConfigName);
 
       Assert.That(buildConfig != null, "Cannot find a build type for that buildName");
     }
@@ -111,7 +113,7 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_build_configs_by_project_id()
     {
       string projectId = m_goodProjectId;
-      var buildConfigs = m_client.BuildConfigs.ByProjectId(projectId);
+      List<BuildConfig> buildConfigs = m_client.BuildConfigs.ByProjectId(projectId);
 
       Assert.That(buildConfigs.Any(), "Cannot find a build type for that projectId");
     }
@@ -120,7 +122,7 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_build_configs_by_project_name()
     {
       string projectName = m_goodProjectId;
-      var buildConfigs = m_client.BuildConfigs.ByProjectName(projectName);
+      List<BuildConfig> buildConfigs = m_client.BuildConfigs.ByProjectName(projectName);
 
       Assert.That(buildConfigs.Any(), "Cannot find a build type for that projectName");
     }
@@ -129,7 +131,7 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_artifact_dependencies_by_build_config_id()
     {
       string buildConfigId = m_goodBuildConfigId;
-      var artifactDependencies = m_client.BuildConfigs.GetArtifactDependencies(buildConfigId);
+      ArtifactDependencies artifactDependencies = m_client.BuildConfigs.GetArtifactDependencies(buildConfigId);
 
       Assert.That(artifactDependencies != null, "Cannot find a Artifact dependencies for that buildConfigId");
     }
@@ -138,16 +140,16 @@ namespace TeamCitySharp.IntegrationTests
     public void it_returns_snapshot_dependencies_by_build_config_id()
     {
       string buildConfigId = m_goodBuildConfigId;
-      var snapshotDependencies = m_client.BuildConfigs.GetSnapshotDependencies(buildConfigId);
+      SnapshotDependencies snapshotDependencies = m_client.BuildConfigs.GetSnapshotDependencies(buildConfigId);
       Assert.That(snapshotDependencies != null, "Cannot find a snapshot dependencies for that buildConfigId");
     }
 
     [Test]
     public void it_create_build_config_step()
     {
-      var bt = m_client.BuildConfigs.CreateConfigurationByProjectId(m_goodProjectId,
+      BuildConfig bt = m_client.BuildConfigs.CreateConfigurationByProjectId(m_goodProjectId,
         "testNewConfig");
-      var xml= "<step type=\"simpleRunner\">" +
+      string xml= "<step type=\"simpleRunner\">" +
                "<properties>" +
                "<property name=\"script.content\" value=\"@echo off&#xA;echo Step1&#xA;touch step1.txt\" />" +
                "<property name=\"teamcity.step.mode\" value=\"default\" />" +

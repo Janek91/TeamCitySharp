@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamCitySharp.Fields
+﻿namespace TeamCitySharp.Fields
 {
   public class TemplateField : IField
   {
@@ -43,7 +41,7 @@ namespace TeamCitySharp.Fields
 
     public override string ToString()
     {
-      var currentFields = String.Empty;
+      string currentFields = string.Empty;
 
       FieldHelper.AddField(ProjectName, ref currentFields, "projectName");
       FieldHelper.AddField(ProjectId, ref currentFields, "projectId");

@@ -46,7 +46,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_throws_exception_when_host_does_not_exist()
     {
-      var client = new TeamCityClient("test:81");
+      TeamCityClient client = new TeamCityClient("test:81");
       client.Connect("admin", "qwerty");
 
       Assert.Throws<WebException>(() => client.Projects.All());
@@ -56,7 +56,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_throws_exception_when_no_connection_formed()
     {
-      var client = new TeamCityClient(m_server, m_useSsl);
+      TeamCityClient client = new TeamCityClient(m_server, m_useSsl);
 
       Assert.Throws<ArgumentException>(() => client.Projects.All());
 
@@ -92,7 +92,7 @@ namespace TeamCitySharp.IntegrationTests
     [Test]
     public void it_returns_project_details_when_passing_project()
     {
-      var project = new Project {Id = m_goodProjectId };
+      Project project = new Project {Id = m_goodProjectId };
       Project projectDetails = m_client.Projects.Details(project);
 
       Assert.That(!string.IsNullOrWhiteSpace(projectDetails.Id));
@@ -103,10 +103,10 @@ namespace TeamCitySharp.IntegrationTests
     [Ignore("Modify guid...")]
     public void it_returns_project_details_when_creating_project()
     {
-      var client = new TeamCityClient("localhost:81");
+      TeamCityClient client = new TeamCityClient("localhost:81");
       client.Connect("admin", "qwerty");
-      var projectName = Guid.NewGuid().ToString("N");
-      var project = client.Projects.Create(projectName);
+      string projectName = Guid.NewGuid().ToString("N");
+      Project project = client.Projects.Create(projectName);
 
       Assert.That(project, Is.Not.Null);
       Assert.That(project.Name, Is.EqualTo(projectName));

@@ -16,19 +16,19 @@ namespace TeamCitySharp.ActionTypes
 
     public Agents GetFields(string fields)
     {
-      var newInstance = (Agents) MemberwiseClone();
+      Agents newInstance = (Agents) MemberwiseClone();
       newInstance.m_fields = fields;
       return newInstance;
     }
 
     public List<Agent> All(bool includeDisconnected = true, bool includeUnauthorized = true)
     {
-      var url =
+      string url =
         string.Format(
           ActionHelper.CreateFieldUrl("/app/rest/agents?includeDisconnected={0}&includeUnauthorized={1}", m_fields),
           includeDisconnected.ToString().ToLower(), includeUnauthorized.ToString().ToLower());
 
-      var agentWrapper = m_caller.Get<AgentWrapper>(url);
+      AgentWrapper agentWrapper = m_caller.Get<AgentWrapper>(url);
 
       return agentWrapper.Agent;
     }
